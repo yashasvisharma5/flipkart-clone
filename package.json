@@ -1,0 +1,21 @@
+{
+  "name": "runwayml-video-generator",
+  "version": "1.0.0",
+  "description": "VideoAI - Professional AI video generation platform with ChatGPT-style interface",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "setup-check": "node setup-check.js"
+  },
+  "keywords": ["react", "nodejs", "runwayml", "video-generation", "ai"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
