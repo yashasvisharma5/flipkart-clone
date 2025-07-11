@@ -1,26 +1,39 @@
-# 🎬 AI Video Generator
+# 🎬 VideoAI - Professional AI Video Generation Platform
 
-A modern React + Node.js web application that generates videos from text prompts using the RunwayML API. Users can create stunning videos by describing scenes in natural language and optionally uploading reference images.
+A sophisticated, enterprise-grade React + Node.js web application that generates videos from text prompts using the RunwayML API. Built with the same professional standards as ChatGPT, Claude, and other leading AI platforms.
 
-![AI Video Generator](https://via.placeholder.com/800x400/667eea/ffffff?text=AI+Video+Generator)
+![VideoAI Platform](https://via.placeholder.com/800x400/667eea/ffffff?text=VideoAI+Platform)
 
 ## ✨ Features
 
+### 🎨 Professional AI Platform Design
+- **ChatGPT-Style Interface**: Modern, clean design matching industry standards
+- **Sidebar Navigation**: Professional navigation with active states and badges
+- **Header with Branding**: Polished header with logo and user menu
+- **Tabbed Interface**: Organize features with Generate and History tabs
+- **Loading Screens**: Professional loading animations and splash screen
+- **Inter Typography**: Premium font stack for crisp, readable text
+
+### 🚀 Core Functionality
 - **Text-to-Video Generation**: Create videos from creative text prompts
 - **Image-to-Video**: Upload reference images to guide video generation
 - **Real-time Progress Tracking**: Live status updates during video creation
-- **Beautiful Modern UI**: Responsive design with smooth animations
+- **Video History**: Keep track of all generated videos with thumbnails
+- **Suggested Prompts**: Quick-start templates for inspiration
 - **Video Download**: Download generated videos directly
 - **Cloud Integration**: Uses Cloudinary for image storage
-- **Loading Animations**: Engaging UI while videos are being created
+- **Mobile Responsive**: Works perfectly on all devices
 
 ## 🚀 Tech Stack
 
 ### Frontend
 - **React 18** with TypeScript
+- **Professional Design System** with reusable components
+- **Inter Font** for premium typography
+- **CSS Grid & Flexbox** for responsive layouts
 - **Axios** for API communication
-- **Modern CSS** with gradients and animations
-- **Responsive Design** for all devices
+- **Modern Animations** with CSS transforms and transitions
+- **Mobile-First Responsive Design**
 
 ### Backend
 - **Node.js** with Express

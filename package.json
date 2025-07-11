@@ -1,7 +1,7 @@
 {
   "name": "runwayml-video-generator",
   "version": "1.0.0",
-  "description": "A React + Node.js web app for generating videos using RunwayML API",
+  "description": "VideoAI - Professional AI video generation platform with ChatGPT-style interface",
   "main": "index.js",
   "scripts": {
     "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",

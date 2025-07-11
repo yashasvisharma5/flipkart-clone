@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-Get your AI Video Generator running in 5 minutes!
+Get your professional VideoAI platform running in 5 minutes!
 
 ## Prerequisites
 - Node.js (v16+)
