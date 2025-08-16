@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Management System - Home</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-tint me-2"></i>
+                Blood Bank Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="donor.html">Donor Registration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="request.html">Blood Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Admin Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section bg-gradient">
+        <div class="container">
+            <div class="row min-vh-100 align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <!-- Blood Drop Icon -->
+                    <div class="hero-icon mb-4">
+                        <i class="fas fa-tint text-danger" style="font-size: 5rem;"></i>
+                    </div>
+                    
+                    <!-- Welcome Message -->
+                    <h1 class="display-4 fw-bold text-dark mb-4">
+                        Welcome to Blood Bank Management System
+                    </h1>
+                    <p class="lead text-muted mb-5">
+                        Saving lives through efficient blood donation and distribution. 
+                        Join our community of heroes and make a difference today.
+                    </p>
+                    
+                    <!-- Call-to-Action Buttons -->
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-md-4">
+                            <a href="donor.html" class="btn btn-danger btn-lg w-100 shadow-sm">
+                                <i class="fas fa-user-plus me-2"></i>
+                                Register as Donor
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="request.html" class="btn btn-outline-danger btn-lg w-100 shadow-sm">
+                                <i class="fas fa-hand-holding-medical me-2"></i>
+                                Make Blood Request
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="admin.html" class="btn btn-dark btn-lg w-100 shadow-sm">
+                                <i class="fas fa-cog me-2"></i>
+                                Admin Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="fw-bold text-dark">Why Choose Our Blood Bank?</h2>
+                    <p class="text-muted">We provide reliable and efficient blood management services</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-shield-alt text-danger mb-3" style="font-size: 3rem;"></i>
+                            <h5 class="card-title">Safe & Secure</h5>
+                            <p class="card-text text-muted">
+                                All blood samples are thoroughly tested and stored under optimal conditions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-clock text-danger mb-3" style="font-size: 3rem;"></i>
+                            <h5 class="card-title">24/7 Availability</h5>
+                            <p class="card-text text-muted">
+                                Emergency blood requests are handled round the clock for critical situations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-users text-danger mb-3" style="font-size: 3rem;"></i>
+                            <h5 class="card-title">Community Driven</h5>
+                            <p class="card-text text-muted">
+                                Built by the community, for the community. Join thousands of life-savers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contact Section -->
+    <section class="emergency-section py-5 bg-danger text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h3 class="fw-bold mb-2">Emergency Blood Request?</h3>
+                    <p class="mb-0">Call our 24/7 emergency hotline for immediate assistance</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="tel:+1234567890" class="btn btn-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>
+                        Call Now: +123-456-7890
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-tint me-2 text-danger"></i>
+                        Blood Bank Management
+                    </h5>
+                    <p class="text-muted">
+                        Dedicated to saving lives through efficient blood donation and distribution management.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="donor.html" class="text-muted text-decoration-none">Donor Registration</a></li>
+                        <li><a href="request.html" class="text-muted text-decoration-none">Blood Request</a></li>
+                        <li><a href="admin.html" class="text-muted text-decoration-none">Admin Dashboard</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Contact Information</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>123 Health Street, Medical City</li>
+                        <li><i class="fas fa-phone me-2"></i>+123-456-7890</li>
+                        <li><i class="fas fa-envelope me-2"></i>info@bloodbank.com</li>
+                        <li><i class="fas fa-clock me-2"></i>24/7 Emergency Service</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-muted mb-0">
+                        &copy; 2024 Blood Bank Management System. All rights reserved. 
+                        Made with <i class="fas fa-heart text-danger"></i> for saving lives.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
