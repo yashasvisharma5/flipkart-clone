@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Request - Blood Bank System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .request-section {
+            background: linear-gradient(135deg, #dc3545, #6c757d);
+            padding: 60px 0;
+            min-height: 100vh;
+        }
+        .request-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .request-header {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+            text-align: center;
+        }
+        .request-body {
+            padding: 40px;
+        }
+        .urgency-high {
+            background-color: #dc3545;
+            color: white;
+        }
+        .urgency-medium {
+            background-color: #ffc107;
+            color: black;
+        }
+        .urgency-low {
+            background-color: #28a745;
+            color: white;
+        }
+        .blood-type-card {
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .blood-type-card:hover {
+            border-color: #dc3545;
+            background-color: #f8f9fa;
+        }
+        .blood-type-card.selected {
+            border-color: #dc3545;
+            background-color: #dc3545;
+            color: white;
+        }
+        .info-card {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-tint me-2"></i>BloodBank System
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="donor.html">Become a Donor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="request.html">Request Blood</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Request Section -->
+    <section class="request-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="row">
+                        <!-- Request Form -->
+                        <div class="col-lg-8">
+                            <div class="card request-card">
+                                <div class="request-header">
+                                    <h2><i class="fas fa-hand-holding-medical me-3"></i>Blood Request Form</h2>
+                                    <p class="mb-0">Submit your urgent blood requirement request</p>
+                                </div>
+                                <div class="request-body">
+                                    <!-- Alert Messages -->
+                                    <div id="alert-container"></div>
+
+                                    <form id="requestForm">
+                                        <!-- Request Type -->
+                                        <h5 class="text-danger mb-3"><i class="fas fa-clipboard-list me-2"></i>Request Type</h5>
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="requestType" id="hospital" value="hospital" checked>
+                                                    <label class="form-check-label" for="hospital">
+                                                        <i class="fas fa-hospital me-2"></i>Hospital Request
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="requestType" id="individual" value="individual">
+                                                    <label class="form-check-label" for="individual">
+                                                        <i class="fas fa-user me-2"></i>Individual Request
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Hospital Information -->
+                                        <div id="hospitalInfo">
+                                            <h5 class="text-danger mb-3"><i class="fas fa-hospital me-2"></i>Hospital Information</h5>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="hospitalName" class="form-label">Hospital Name *</label>
+                                                    <input type="text" class="form-control" id="hospitalName" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="hospitalId" class="form-label">Hospital Registration ID *</label>
+                                                    <input type="text" class="form-control" id="hospitalId" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="doctorName" class="form-label">Doctor Name *</label>
+                                                    <input type="text" class="form-control" id="doctorName" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="doctorLicense" class="form-label">Medical License Number *</label>
+                                                    <input type="text" class="form-control" id="doctorLicense" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Individual Information -->
+                                        <div id="individualInfo" style="display: none;">
+                                            <h5 class="text-danger mb-3"><i class="fas fa-user me-2"></i>Personal Information</h5>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="requestorName" class="form-label">Full Name *</label>
+                                                    <input type="text" class="form-control" id="requestorName">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="requestorPhone" class="form-label">Phone Number *</label>
+                                                    <input type="tel" class="form-control" id="requestorPhone">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="relationship" class="form-label">Relationship to Patient *</label>
+                                                <select class="form-select" id="relationshipSelect">
+                                                    <option value="">Select Relationship</option>
+                                                    <option value="self">Self</option>
+                                                    <option value="spouse">Spouse</option>
+                                                    <option value="parent">Parent</option>
+                                                    <option value="child">Child</option>
+                                                    <option value="sibling">Sibling</option>
+                                                    <option value="relative">Other Relative</option>
+                                                    <option value="friend">Friend</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Patient Information -->
+                                        <h5 class="text-danger mb-3"><i class="fas fa-user-injured me-2"></i>Patient Information</h5>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="patientName" class="form-label">Patient Name *</label>
+                                                <input type="text" class="form-control" id="patientName" required>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="patientAge" class="form-label">Age *</label>
+                                                <input type="number" class="form-control" id="patientAge" min="0" required>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="patientGender" class="form-label">Gender *</label>
+                                                <select class="form-select" id="patientGender" required>
+                                                    <option value="">Select</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Blood Type Selection -->
+                                        <h5 class="text-danger mb-3"><i class="fas fa-tint me-2"></i>Required Blood Type *</h5>
+                                        <div class="row mb-4">
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="A+">
+                                                    <h4>A+</h4>
+                                                    <small>Common</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="A-">
+                                                    <h4>A-</h4>
+                                                    <small>Less Common</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="B+">
+                                                    <h4>B+</h4>
+                                                    <small>Common</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="B-">
+                                                    <h4>B-</h4>
+                                                    <small>Rare</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="AB+">
+                                                    <h4>AB+</h4>
+                                                    <small>Universal Receiver</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="AB-">
+                                                    <h4>AB-</h4>
+                                                    <small>Very Rare</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="O+">
+                                                    <h4>O+</h4>
+                                                    <small>Most Common</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 mb-3">
+                                                <div class="blood-type-card" data-blood-type="O-">
+                                                    <h4>O-</h4>
+                                                    <small>Universal Donor</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="selectedBloodType" required>
+
+                                        <!-- Request Details -->
+                                        <h5 class="text-danger mb-3"><i class="fas fa-info-circle me-2"></i>Request Details</h5>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label for="unitsNeeded" class="form-label">Units Required *</label>
+                                                <input type="number" class="form-control" id="unitsNeeded" min="1" max="10" required>
+                                                <small class="text-muted">1 unit = 450ml</small>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="urgency" class="form-label">Urgency Level *</label>
+                                                <select class="form-select" id="urgency" required>
+                                                    <option value="">Select Urgency</option>
+                                                    <option value="critical">Critical (0-2 hours)</option>
+                                                    <option value="urgent">Urgent (2-6 hours)</option>
+                                                    <option value="routine">Routine (6-24 hours)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="requiredBy" class="form-label">Required By *</label>
+                                                <input type="datetime-local" class="form-control" id="requiredBy" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="medicalCondition" class="form-label">Medical Condition/Reason *</label>
+                                            <textarea class="form-control" id="medicalCondition" rows="3" required 
+                                                placeholder="Please describe the medical condition or reason for blood requirement"></textarea>
+                                        </div>
+
+                                        <!-- Contact Information -->
+                                        <h5 class="text-danger mb-3"><i class="fas fa-phone me-2"></i>Contact Information</h5>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="contactEmail" class="form-label">Email Address *</label>
+                                                <input type="email" class="form-control" id="contactEmail" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="contactPhone" class="form-label">Emergency Contact *</label>
+                                                <input type="tel" class="form-control" id="contactPhone" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="hospitalLocation" class="form-label">Hospital/Location Address *</label>
+                                            <textarea class="form-control" id="hospitalLocation" rows="2" required 
+                                                placeholder="Full address where blood needs to be delivered"></textarea>
+                                        </div>
+
+                                        <!-- Additional Notes -->
+                                        <div class="mb-4">
+                                            <label for="additionalNotes" class="form-label">Additional Notes</label>
+                                            <textarea class="form-control" id="additionalNotes" rows="2" 
+                                                placeholder="Any additional information or special requirements"></textarea>
+                                        </div>
+
+                                        <!-- Terms and Conditions -->
+                                        <div class="form-check mb-4">
+                                            <input class="form-check-input" type="checkbox" id="requestTerms" required>
+                                            <label class="form-check-label" for="requestTerms">
+                                                I confirm that all information provided is accurate and I agree to the 
+                                                <a href="#" class="text-danger">Terms of Service</a> *
+                                            </label>
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-danger btn-lg">
+                                                <i class="fas fa-paper-plane me-2"></i>Submit Blood Request
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Information Sidebar -->
+                        <div class="col-lg-4">
+                            <div class="info-card">
+                                <h5 class="text-primary"><i class="fas fa-clock me-2"></i>Response Times</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><span class="badge bg-danger">Critical:</span> 0-2 hours</li>
+                                    <li class="mb-2"><span class="badge bg-warning">Urgent:</span> 2-6 hours</li>
+                                    <li class="mb-2"><span class="badge bg-success">Routine:</span> 6-24 hours</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-card">
+                                <h5 class="text-primary"><i class="fas fa-shield-alt me-2"></i>Safety Information</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>All blood is tested for safety</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Screened for infections</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Proper storage maintained</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Cross-matching verified</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-card">
+                                <h5 class="text-primary"><i class="fas fa-phone me-2"></i>Emergency Hotline</h5>
+                                <p class="mb-2"><strong>24/7 Emergency:</strong></p>
+                                <p class="h5 text-danger">+1 (555) 911-BLOOD</p>
+                                <p class="mb-0"><small>For critical requests call immediately</small></p>
+                            </div>
+
+                            <div class="info-card">
+                                <h5 class="text-primary"><i class="fas fa-file-alt me-2"></i>Required Documents</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">• Medical prescription</li>
+                                    <li class="mb-2">• Patient ID proof</li>
+                                    <li class="mb-2">• Hospital admission letter</li>
+                                    <li class="mb-2">• Blood group certificate</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle between hospital and individual forms
+        document.querySelectorAll('input[name="requestType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const hospitalInfo = document.getElementById('hospitalInfo');
+                const individualInfo = document.getElementById('individualInfo');
+                
+                if (this.value === 'hospital') {
+                    hospitalInfo.style.display = 'block';
+                    individualInfo.style.display = 'none';
+                    setRequiredFields(['hospitalName', 'hospitalId', 'doctorName', 'doctorLicense'], true);
+                    setRequiredFields(['requestorName', 'requestorPhone', 'relationshipSelect'], false);
+                } else {
+                    hospitalInfo.style.display = 'none';
+                    individualInfo.style.display = 'block';
+                    setRequiredFields(['hospitalName', 'hospitalId', 'doctorName', 'doctorLicense'], false);
+                    setRequiredFields(['requestorName', 'requestorPhone', 'relationshipSelect'], true);
+                }
+            });
+        });
+
+        function setRequiredFields(fieldIds, required) {
+            fieldIds.forEach(id => {
+                const field = document.getElementById(id);
+                if (field) {
+                    field.required = required;
+                }
+            });
+        }
+
+        // Blood type selection
+        document.querySelectorAll('.blood-type-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.blood-type-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('selectedBloodType').value = this.dataset.bloodType;
+            });
+        });
+
+        // Set minimum date/time to current
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('requiredBy').min = now.toISOString().slice(0, 16);
+        });
+
+        // Form submission
+        document.getElementById('requestForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Check if blood type is selected
+            if (!document.getElementById('selectedBloodType').value) {
+                showAlert('warning', 'Please select a blood type.');
+                return;
+            }
+
+            // Show loading
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Submitting Request...';
+            submitBtn.disabled = true;
+
+            // Collect form data
+            const requestType = document.querySelector('input[name="requestType"]:checked').value;
+            const formData = {
+                requestType: requestType,
+                patientName: document.getElementById('patientName').value,
+                patientAge: parseInt(document.getElementById('patientAge').value),
+                patientGender: document.getElementById('patientGender').value,
+                bloodType: document.getElementById('selectedBloodType').value,
+                unitsNeeded: parseInt(document.getElementById('unitsNeeded').value),
+                urgency: document.getElementById('urgency').value,
+                requiredBy: document.getElementById('requiredBy').value,
+                medicalCondition: document.getElementById('medicalCondition').value,
+                contactEmail: document.getElementById('contactEmail').value,
+                contactPhone: document.getElementById('contactPhone').value,
+                hospitalLocation: document.getElementById('hospitalLocation').value,
+                additionalNotes: document.getElementById('additionalNotes').value
+            };
+
+            // Add specific fields based on request type
+            if (requestType === 'hospital') {
+                formData.hospitalInfo = {
+                    name: document.getElementById('hospitalName').value,
+                    id: document.getElementById('hospitalId').value,
+                    doctorName: document.getElementById('doctorName').value,
+                    doctorLicense: document.getElementById('doctorLicense').value
+                };
+            } else {
+                formData.requestorInfo = {
+                    name: document.getElementById('requestorName').value,
+                    phone: document.getElementById('requestorPhone').value,
+                    relationship: document.getElementById('relationshipSelect').value
+                };
+            }
+
+            try {
+                const response = await fetch('/api/requests', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showAlert('success', `Request submitted successfully! Request ID: ${result.id}. You will be contacted shortly.`);
+                    document.getElementById('requestForm').reset();
+                    document.querySelectorAll('.blood-type-card').forEach(c => c.classList.remove('selected'));
+                    document.getElementById('selectedBloodType').value = '';
+                } else {
+                    showAlert('danger', result.error || 'Request submission failed. Please try again.');
+                }
+            } catch (error) {
+                showAlert('danger', 'Network error. Please check your connection and try again.');
+            }
+
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+
+        function showAlert(type, message) {
+            const alertContainer = document.getElementById('alert-container');
+            const alert = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'exclamation-circle'} me-2"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            alertContainer.innerHTML = alert;
+            
+            // Auto dismiss after 8 seconds
+            setTimeout(() => {
+                const alertElement = alertContainer.querySelector('.alert');
+                if (alertElement) {
+                    alertElement.remove();
+                }
+            }, 8000);
+        }
+    </script>
+</body>
+</html>
