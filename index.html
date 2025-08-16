@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Bank Management System</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Hero section styling */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1606851090375-64ff1d1c5481?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+      background-size: cover;
+      background-position: center;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Dark overlay for better text readability */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ffffff 50%, #ff4757 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      color: #f8f9fa;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    /* Enhanced button styling */
+    .hero-btn {
+      background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+      border: none;
+      color: white;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(220, 53, 69, 0.6);
+      background: linear-gradient(135deg, #c82333 0%, #b21e2f 100%);
+      color: white;
+    }
+
+    .hero-btn:hover::before {
+      left: 100%;
+    }
+
+    /* Feature cards hover effect */
+    .feature-card {
+      transition: all 0.3s ease;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Call to action section */
+    .cta-section {
+      background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+      position: relative;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+      opacity: 0.5;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Professional footer */
+    .footer {
+      background: linear-gradient(135deg, #212529 0%, #343a40 100%);
+      border-top: 3px solid #dc3545;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: #adb5bd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #dc3545;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .hero-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <i class="fas fa-tint me-2"></i>Blood Bank Management
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="donor.html">Donor Registration</a></li>
+          <li class="nav-item"><a class="nav-link" href="request.html">Blood Request</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin Dashboard</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Donate Blood, Save Lives</h1>
+      <p>Join our community of lifesavers and help patients in need</p>
+      <a href="donor.html" class="btn hero-btn mt-3">
+        <i class="fas fa-heart me-2"></i>Register as Donor
+      </a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold text-danger">Our Features</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card feature-card shadow-sm border-0">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-user-plus fa-3x text-danger mb-3"></i>
+              <h5 class="card-title fw-bold">Donor Registration</h5>
+              <p class="card-text">Easy and quick registration to become a life-saving blood donor.</p>
+              <a href="donor.html" class="btn btn-outline-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card shadow-sm border-0">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-hand-holding-medical fa-3x text-danger mb-3"></i>
+              <h5 class="card-title fw-bold">Blood Requests</h5>
+              <p class="card-text">Hospitals and patients can request blood units online instantly.</p>
+              <a href="request.html" class="btn btn-outline-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card shadow-sm border-0">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-chart-line fa-3x text-danger mb-3"></i>
+              <h5 class="card-title fw-bold">Admin Dashboard</h5>
+              <p class="card-text">Track donors, requests, and manage hospital data efficiently.</p>
+              <a href="admin.html" class="btn btn-outline-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-3 mb-4">
+          <div class="card border-0 bg-transparent">
+            <div class="card-body">
+              <i class="fas fa-users fa-3x text-danger mb-3"></i>
+              <h3 class="fw-bold text-danger">1,245</h3>
+              <p class="text-muted">Registered Donors</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card border-0 bg-transparent">
+            <div class="card-body">
+              <i class="fas fa-tint fa-3x text-danger mb-3"></i>
+              <h3 class="fw-bold text-danger">567</h3>
+              <p class="text-muted">Blood Units Available</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card border-0 bg-transparent">
+            <div class="card-body">
+              <i class="fas fa-hospital fa-3x text-danger mb-3"></i>
+              <h3 class="fw-bold text-danger">89</h3>
+              <p class="text-muted">Partner Hospitals</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card border-0 bg-transparent">
+            <div class="card-body">
+              <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+              <h3 class="fw-bold text-danger">2,340</h3>
+              <p class="text-muted">Lives Saved</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="py-5 cta-section text-white text-center">
+    <div class="container cta-content">
+      <h2 class="mb-3 fw-bold">Ready to Make a Difference?</h2>
+      <p class="mb-4 lead">Sign up today and help save lives by donating blood to those in need.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="donor.html" class="btn btn-light btn-lg">
+          <i class="fas fa-user-plus me-2"></i>Become a Donor
+        </a>
+        <a href="request.html" class="btn btn-outline-light btn-lg">
+          <i class="fas fa-hand-holding-medical me-2"></i>Request Blood
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-white py-4">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <i class="fas fa-tint text-danger"></i>
+          <span>Blood Bank Management System</span>
+        </div>
+        <div class="footer-links">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#about">About</a>
+        </div>
+      </div>
+      <hr class="border-secondary my-3">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 Blood Bank Management System. All Rights Reserved.</p>
+        <small class="text-muted">Professional healthcare technology solutions</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add animation on scroll for feature cards
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
