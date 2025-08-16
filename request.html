@@ -13,6 +13,269 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Custom styles for enhanced appearance */
+        .main-container {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .request-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .request-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc3545, #c82333, #dc3545);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: none;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0 1.5rem 0;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.1);
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #dc3545, #c82333);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .section-header h5 {
+            margin: 0;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.15);
+            transform: translateY(-2px);
+            background: #ffffff;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-text {
+            color: #6c757d;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: 0.4rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #dc3545;
+            z-index: 10;
+            opacity: 0.7;
+        }
+
+        .submit-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            border: 2px dashed rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 3rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(220, 53, 69, 0.4);
+            background: linear-gradient(135deg, #c82333 0%, #b21e2f 100%);
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+
+        .progress-indicator {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .progress-step {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e9ecef;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            background: #dc3545;
+            transform: scale(1.2);
+        }
+
+        .emergency-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        .form-row {
+            background: rgba(255,255,255,0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .icon-input {
+            position: relative;
+        }
+
+        .icon-input .form-control {
+            padding-left: 2.5rem;
+        }
+
+        .icon-input .input-icon-left {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #dc3545;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem 0;
+            }
+            
+            .card-body {
+                padding: 2rem 1.5rem !important;
+            }
+            
+            .btn-submit {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -27,177 +290,314 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="donor.html">Donor Registration</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="request.html">Blood Request</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin.html">Admin Dashboard</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="donor.html">Donor Registration</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="request.html">Blood Request</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.html">Admin Dashboard</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-lg border-0">
-                    <div class="card-header bg-danger text-white text-center py-4">
-                        <h2 class="mb-0">
-                            <i class="fas fa-hand-holding-medical me-2"></i>
-                            Blood Request
-                        </h2>
-                        <p class="mb-0 mt-2">Request blood for medical emergencies</p>
+    <div class="main-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-9">
+                    <!-- Progress Indicator -->
+                    <div class="progress-indicator text-center">
+                        <small class="text-muted me-3">Form Progress:</small>
+                        <span class="progress-step active" data-step="1"></span>
+                        <span class="progress-step" data-step="2"></span>
+                        <span class="progress-step" data-step="3"></span>
+                        <span class="progress-step" data-step="4"></span>
+                        <span class="progress-step" data-step="5"></span>
                     </div>
-                    <div class="card-body p-5">
-                        <form id="requestForm">
-                            <!-- Patient Information Section -->
-                            <h5 class="text-danger mb-3">
-                                <i class="fas fa-user-injured me-2"></i>Patient Information
-                            </h5>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="patientName" class="form-label">Patient Name</label>
-                                    <input type="text" class="form-control" id="patientName" required>
+
+                    <div class="card request-card">
+                        <div class="emergency-badge">
+                            <i class="fas fa-exclamation-triangle me-1"></i>
+                            Emergency Form
+                        </div>
+                        
+                        <div class="card-header text-white text-center">
+                            <h2 class="mb-2">
+                                <i class="fas fa-hand-holding-medical me-3"></i>
+                                Blood Request Form
+                            </h2>
+                            <p class="mb-0 opacity-90">Request blood for medical emergencies - Save Lives</p>
+                        </div>
+                        
+                        <div class="card-body p-4">
+                            <form id="requestForm">
+                                
+                                <!-- Patient Information Section -->
+                                <div class="section-header" data-section="1">
+                                    <h5 class="text-danger mb-0">
+                                        <i class="fas fa-user-injured me-2"></i>
+                                        Patient Information
+                                    </h5>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="patientAge" class="form-label">Patient Age</label>
-                                    <input type="number" class="form-control" id="patientAge" min="1" required>
+                                
+                                <div class="form-row">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="patientName" class="form-label">
+                                                <i class="fas fa-user me-1"></i> Patient Name
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="text" class="form-control" id="patientName" 
+                                                       placeholder="Enter patient's full name" required>
+                                                <i class="fas fa-user input-icon-left"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="patientAge" class="form-label">
+                                                <i class="fas fa-birthday-cake me-1"></i> Patient Age
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="number" class="form-control" id="patientAge" 
+                                                       min="1" max="120" placeholder="Age in years" required>
+                                                <i class="fas fa-birthday-cake input-icon-left"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="patientGender" class="form-label">
+                                                <i class="fas fa-venus-mars me-1"></i> Gender
+                                            </label>
+                                            <select class="form-select" id="patientGender" required>
+                                                <option value="">Choose Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="contactNumber" class="form-label">
+                                                <i class="fas fa-phone me-1"></i> Contact Number
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="tel" class="form-control" id="contactNumber" 
+                                                       placeholder="+91 98765 43210" required>
+                                                <i class="fas fa-phone input-icon-left"></i>
+                                            </div>
+                                            <div class="form-text">Primary contact number for emergency communication</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="patientGender" class="form-label">Gender</label>
-                                    <select class="form-select" id="patientGender" required>
-                                        <option value="">Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
+
+                                <!-- Blood Request Details Section -->
+                                <div class="section-header" data-section="2">
+                                    <h5 class="text-danger mb-0">
+                                        <i class="fas fa-tint me-2"></i>
+                                        Blood Request Details
+                                    </h5>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="contactNumber" class="form-label">Contact Number</label>
-                                    <input type="tel" class="form-control" id="contactNumber" required>
+                                
+                                <div class="form-row">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="requiredBloodType" class="form-label">
+                                                <i class="fas fa-tint me-1"></i> Required Blood Type
+                                            </label>
+                                            <select class="form-select" id="requiredBloodType" required>
+                                                <option value="">Select Blood Group</option>
+                                                <option value="A+">A+ (A Positive)</option>
+                                                <option value="A-">A- (A Negative)</option>
+                                                <option value="B+">B+ (B Positive)</option>
+                                                <option value="B-">B- (B Negative)</option>
+                                                <option value="AB+">AB+ (AB Positive)</option>
+                                                <option value="AB-">AB- (AB Negative)</option>
+                                                <option value="O+">O+ (O Positive)</option>
+                                                <option value="O-">O- (O Negative - Universal Donor)</option>
+                                            </select>
+                                            <div class="form-text">Select the exact blood group required for transfusion</div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="unitsRequired" class="form-label">
+                                                <i class="fas fa-vial me-1"></i> Units Required
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="number" class="form-control" id="unitsRequired" 
+                                                       min="1" max="10" placeholder="Number of units" required>
+                                                <i class="fas fa-vial input-icon-left"></i>
+                                            </div>
+                                            <div class="form-text">Specify number of blood units needed (1-10 units)</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="urgency" class="form-label">
+                                                <i class="fas fa-exclamation-triangle me-1"></i> Urgency Level
+                                            </label>
+                                            <select class="form-select" id="urgency" required>
+                                                <option value="">Select Priority Level</option>
+                                                <option value="emergency">🔴 Emergency (Within 1 hour)</option>
+                                                <option value="urgent">🟡 Urgent (Within 24 hours)</option>
+                                                <option value="routine">🟢 Routine (Within 3 days)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="requestDate" class="form-label">
+                                                <i class="fas fa-calendar-alt me-1"></i> Required Date
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="date" class="form-control" id="requestDate" required>
+                                                <i class="fas fa-calendar-alt input-icon-left"></i>
+                                            </div>
+                                            <div class="form-text">Date when blood transfusion is needed</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <!-- Blood Request Details Section -->
-                            <h5 class="text-danger mb-3 mt-4">
-                                <i class="fas fa-tint me-2"></i>Blood Request Details
-                            </h5>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="requiredBloodType" class="form-label">Required Blood Type</label>
-                                    <select class="form-select" id="requiredBloodType" required>
-                                        <option value="">Select Blood Type</option>
-                                        <option value="A+">A+</option>
-                                        <option value="A-">A-</option>
-                                        <option value="B+">B+</option>
-                                        <option value="B-">B-</option>
-                                        <option value="AB+">AB+</option>
-                                        <option value="AB-">AB-</option>
-                                        <option value="O+">O+</option>
-                                        <option value="O-">O-</option>
-                                    </select>
+
+                                <!-- Hospital Information Section -->
+                                <div class="section-header" data-section="3">
+                                    <h5 class="text-danger mb-0">
+                                        <i class="fas fa-hospital me-2"></i>
+                                        Hospital Information
+                                    </h5>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="unitsRequired" class="form-label">Units Required</label>
-                                    <input type="number" class="form-control" id="unitsRequired" min="1" max="10" required>
+                                
+                                <div class="form-row">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="hospitalName" class="form-label">
+                                                <i class="fas fa-hospital me-1"></i> Hospital Name
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="text" class="form-control" id="hospitalName" 
+                                                       placeholder="City General Hospital" required>
+                                                <i class="fas fa-hospital input-icon-left"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="doctorName" class="form-label">
+                                                <i class="fas fa-user-md me-1"></i> Doctor Name
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="text" class="form-control" id="doctorName" 
+                                                       placeholder="Dr. John Smith" required>
+                                                <i class="fas fa-user-md input-icon-left"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="hospitalAddress" class="form-label">
+                                            <i class="fas fa-map-marker-alt me-1"></i> Hospital Address
+                                        </label>
+                                        <textarea class="form-control" id="hospitalAddress" rows="3" 
+                                                  placeholder="Enter complete hospital address with city and pincode" required></textarea>
+                                        <div class="form-text">Complete address including street, city, state, and postal code</div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="urgency" class="form-label">Urgency Level</label>
-                                    <select class="form-select" id="urgency" required>
-                                        <option value="">Select Urgency</option>
-                                        <option value="emergency">Emergency (Within 1 hour)</option>
-                                        <option value="urgent">Urgent (Within 24 hours)</option>
-                                        <option value="routine">Routine (Within 3 days)</option>
-                                    </select>
+
+                                <!-- Medical Reason Section -->
+                                <div class="section-header" data-section="4">
+                                    <h5 class="text-danger mb-0">
+                                        <i class="fas fa-notes-medical me-2"></i>
+                                        Medical Information
+                                    </h5>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="requestDate" class="form-label">Required Date</label>
-                                    <input type="date" class="form-control" id="requestDate" required>
+                                
+                                <div class="form-row">
+                                    <div class="mb-3">
+                                        <label for="medicalReason" class="form-label">
+                                            <i class="fas fa-stethoscope me-1"></i> Reason for Blood Request
+                                        </label>
+                                        <textarea class="form-control" id="medicalReason" rows="4" 
+                                                  placeholder="Please describe the medical condition, surgery, or emergency requiring blood transfusion. Include any relevant medical details." required></textarea>
+                                        <div class="form-text">Provide detailed medical reason for blood requirement</div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <!-- Hospital Information Section -->
-                            <h5 class="text-danger mb-3 mt-4">
-                                <i class="fas fa-hospital me-2"></i>Hospital Information
-                            </h5>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="hospitalName" class="form-label">Hospital Name</label>
-                                    <input type="text" class="form-control" id="hospitalName" required>
+
+                                <!-- Contact Person Section -->
+                                <div class="section-header" data-section="5">
+                                    <h5 class="text-danger mb-0">
+                                        <i class="fas fa-user-friends me-2"></i>
+                                        Contact Person Details
+                                    </h5>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="doctorName" class="form-label">Doctor Name</label>
-                                    <input type="text" class="form-control" id="doctorName" required>
+                                
+                                <div class="form-row">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="contactPersonName" class="form-label">
+                                                <i class="fas fa-user me-1"></i> Contact Person Name
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="text" class="form-control" id="contactPersonName" 
+                                                       placeholder="Primary contact person" required>
+                                                <i class="fas fa-user input-icon-left"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="relation" class="form-label">
+                                                <i class="fas fa-heart me-1"></i> Relation to Patient
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="text" class="form-control" id="relation" 
+                                                       placeholder="Father / Mother / Spouse / Friend" required>
+                                                <i class="fas fa-heart input-icon-left"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="contactPersonPhone" class="form-label">
+                                                <i class="fas fa-mobile-alt me-1"></i> Contact Person Phone
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="tel" class="form-control" id="contactPersonPhone" 
+                                                       placeholder="+91 98765 43210" required>
+                                                <i class="fas fa-mobile-alt input-icon-left"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="contactPersonEmail" class="form-label">
+                                                <i class="fas fa-envelope me-1"></i> Contact Person Email
+                                            </label>
+                                            <div class="icon-input">
+                                                <input type="email" class="form-control" id="contactPersonEmail" 
+                                                       placeholder="contact@email.com" required>
+                                                <i class="fas fa-envelope input-icon-left"></i>
+                                            </div>
+                                            <div class="form-text">Valid email for updates and communication</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="hospitalAddress" class="form-label">Hospital Address</label>
-                                <textarea class="form-control" id="hospitalAddress" rows="3" required></textarea>
-                            </div>
-                            
-                            <!-- Medical Reason Section -->
-                            <h5 class="text-danger mb-3 mt-4">
-                                <i class="fas fa-notes-medical me-2"></i>Medical Information
-                            </h5>
-                            
-                            <div class="mb-3">
-                                <label for="medicalReason" class="form-label">Reason for Blood Request</label>
-                                <textarea class="form-control" id="medicalReason" rows="4" placeholder="Please describe the medical condition requiring blood transfusion" required></textarea>
-                            </div>
-                            
-                            <!-- Contact Person Section -->
-                            <h5 class="text-danger mb-3 mt-4">
-                                <i class="fas fa-user-friends me-2"></i>Contact Person Details
-                            </h5>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="contactPersonName" class="form-label">Contact Person Name</label>
-                                    <input type="text" class="form-control" id="contactPersonName" required>
+
+                                <!-- Submit Section -->
+                                <div class="submit-section">
+                                    <div class="mb-3">
+                                        <p class="text-muted mb-2">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            By submitting this form, you confirm that all information provided is accurate and complete.
+                                        </p>
+                                        <small class="text-muted">
+                                            Our team will contact you within the specified urgency timeframe.
+                                        </small>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-danger btn-submit">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        Submit Blood Request
+                                    </button>
+                                    
+                                    <div class="mt-3">
+                                        <small class="text-muted">
+                                            <i class="fas fa-phone me-1"></i>
+                                            Emergency Hotline: <strong>+91 1800-BLOOD-1</strong>
+                                        </small>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="relation" class="form-label">Relation to Patient</label>
-                                    <input type="text" class="form-control" id="relation" required>
-                                </div>
-                            </div>
-                            
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label for="contactPersonPhone" class="form-label">Contact Person Phone</label>
-                                    <input type="tel" class="form-control" id="contactPersonPhone" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="contactPersonEmail" class="form-label">Contact Person Email</label>
-                                    <input type="email" class="form-control" id="contactPersonEmail" required>
-                                </div>
-                            </div>
-                            
-                            <!-- Submit Button -->
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-danger btn-lg">
-                                    <i class="fas fa-paper-plane me-2"></i>
-                                    Submit Blood Request
-                                </button>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -209,5 +609,97 @@
     
     <!-- Custom JS -->
     <script src="js/script.js"></script>
+    
+    <script>
+        // Enhanced form interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('requestDate').min = today;
+            
+            // Progress indicator functionality
+            const sections = document.querySelectorAll('.section-header');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            
+            // Update progress based on form completion
+            function updateProgress() {
+                let completedSections = 0;
+                
+                sections.forEach((section, index) => {
+                    const sectionInputs = section.nextElementSibling.querySelectorAll('input[required], select[required], textarea[required]');
+                    let sectionComplete = true;
+                    
+                    sectionInputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            sectionComplete = false;
+                        }
+                    });
+                    
+                    if (sectionComplete) {
+                        completedSections++;
+                        progressSteps[index].classList.add('active');
+                    } else {
+                        progressSteps[index].classList.remove('active');
+                    }
+                });
+            }
+            
+            // Listen for input changes
+            document.querySelectorAll('input, select, textarea').forEach(element => {
+                element.addEventListener('input', updateProgress);
+                element.addEventListener('change', updateProgress);
+            });
+            
+            // Enhanced form validation with visual feedback
+            const form = document.getElementById('requestForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Check if all required fields are filled
+                const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
+                let allValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('is-invalid');
+                        allValid = false;
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                });
+                
+                if (allValid) {
+                    // Show success message
+                    const submitBtn = form.querySelector('.btn-submit');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Submitting Request...';
+                    submitBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Request Submitted Successfully!';
+                        submitBtn.classList.remove('btn-danger');
+                        submitBtn.classList.add('btn-success');
+                        
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 2000);
+                    }, 2000);
+                } else {
+                    // Show error message
+                    alert('Please fill in all required fields before submitting.');
+                }
+            });
+            
+            // Add floating animation to emergency badge
+            const emergencyBadge = document.querySelector('.emergency-badge');
+            setInterval(() => {
+                emergencyBadge.style.animation = 'none';
+                setTimeout(() => {
+                    emergencyBadge.style.animation = 'pulse 2s infinite';
+                }, 10);
+            }, 4000);
+        });
+    </script>
 </body>
 </html>
